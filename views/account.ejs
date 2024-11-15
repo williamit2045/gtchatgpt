@@ -1,0 +1,149 @@
+<!--ACCOUNT PAGE-->
+<%- include('./partials/header', { title: 'Account' }) %>
+<%- include('./partials/nav') %>
+
+<div class="dashboard-container">
+    <div class="dashboard-intro">
+        <h1>Your Account</h1>
+    </div>
+    
+    <div class="section-toggle">
+        <button class="toggle-btn active" data-section="userCohorts">Your Cohorts</button>
+        <button class="toggle-btn" data-section="relatedCohorts">Related Cohorts</button>
+    </div>
+
+    <div class="sections-container">
+        <section id="userCohorts" class="cohort-section active">
+            <%- include("partials/show", {
+                cohorts: userCohorts,
+                baseCohort: baseCohort,
+                cids: cids,
+                user: user,
+                sortType: userSortType,    
+                section: "userCohorts"
+            }) %>
+        </section>
+        
+        <section id="relatedCohorts" class="cohort-section">
+            <%- include("partials/show", {
+                cohorts: cohorts,
+                baseCohorts: baseCohorts,
+                cids: cids,
+                user: user,
+                sortType: relatedSortType,
+                section: "relatedCohorts"
+            }) %>
+        </section>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>
+<script src="/js/show.js"></script>
+
+<style>
+    /* Container for the entire account dashboard */
+    .dashboard-container {
+        padding: 2rem 0;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    
+    /* Intro section styling */
+    .dashboard-intro {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    /* Section toggle button styles */
+    .section-toggle {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .toggle-btn {
+        padding: 0.5rem 1rem;
+        border: 2px solid #d4a45f;
+        background: transparent;
+        color: #d4a45f;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .toggle-btn:hover {
+        background: rgba(212, 164, 95, 0.15);
+    }
+    
+    .toggle-btn.active {
+        background: #d4a45f;
+        color: #0a0f1b;
+    }
+    
+    /* Section container for toggled content */
+    .sections-container {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    
+    /* Cohort sections */
+    .cohort-section {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .cohort-section.active {
+        display: block;
+        opacity: 1;
+    }
+    </style>
+    
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all toggle buttons and sections
+    const toggleBtns = document.querySelectorAll('.toggle-btn');
+    const sections = document.querySelectorAll('.cohort-section');
+    
+    // Function to update URL parameter without reload
+    function updateUrlParam(param, value) {
+        const url = new URL(window.location.href);
+        url.searchParams.set(param, value);
+        window.history.pushState({}, '', url);
+    }
+    
+    // Handle toggle button clicks
+    toggleBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const sectionId = this.dataset.section;
+            
+            // Update buttons
+            toggleBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update sections
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+            
+            // Update URL to remember active section
+            updateUrlParam('activeSection', sectionId);
+        });
+    });
+    
+    // Set initial active section from URL if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const activeSection = urlParams.get('activeSection');
+    if (activeSection) {
+        const activeBtn = document.querySelector(`[data-section="${activeSection}"]`);
+        if (activeBtn) activeBtn.click();
+    }
+});
+</script>

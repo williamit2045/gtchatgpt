@@ -1,0 +1,202 @@
+<%- include('./partials/header', { title: 'Home' }) %>
+<%- include('./partials/nav') %>
+
+<main class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="intro-title">Globethoughts</p>
+            <p class="tagline">Where collective intelligence meets human understanding</p>
+            <p class="intro-text">Begin by exploring yourself with our MBTI assessment, then discover shared insights with others.</p>
+            <a href="/quiz/mbti" class="cta-button">Take the MBTI Assessment</a>
+        </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <section class="mission">
+        <h2>Our Vision</h2>
+        <p class="vision-text">Globethoughts fosters social integration through shared understanding, enhancing our collective intelligence.</p>
+        <div class="mission-cards">
+            <div class="mission-card"><h3>Understanding</h3><p>Bridging diverse perspectives for deeper empathy.</p></div>
+            <div class="mission-card"><h3>Community</h3><p>Connecting individuals worldwide for common goals.</p></div>
+            <div class="mission-card"><h3>Integration</h3><p>Building a network of shared understanding.</p></div>
+        </div>
+    </section>
+
+    <!-- Inspiration Section as Pseudo-Footer -->
+    <section class="inspiration">
+        <h2>Intellectual Foundation</h2>
+        <p>Inspired by thinkers who envision our potential:</p>
+        <ul class="thinkers-list">
+            <li>Nick Bostrom - Human Potential & Singularity</li>
+            <li>Ray Kurzweil - Human-Machine Evolution</li>
+            <li>Joseph Henrich - Cultural Evolution</li>
+            <li>Steven Pinker - Human Progress</li>
+            <li>Kevin Kelly - Technological Symbiosis</li>
+            <li>Gregg Henriques - Unified Theory of Knowledge</li>
+        </ul>
+    </section>
+</main>
+
+<%- include('./partials/footer') %>
+
+<style>
+  /* General Setup */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap');
+
+body, .landing-page {
+    background-color: #0d0d0d;
+    color: #d6e7f8;
+    font-family: var(--terminal-font);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+}
+
+/* General link styling */
+a {
+    color: #d6e7f8;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:hover {
+    color: #a3a3a3;
+}
+
+/* ============== Hero Section ============== */
+.hero {
+    text-align: right;
+    padding: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    border-left: 4px solid #d6c285; /* Subtle gold border */
+}
+
+.hero-content {
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.intro-title {
+    font-size: 1.8rem;
+    color: #d6c285; /* Light gold color */
+    font-weight: 300;
+}
+
+.tagline {
+    font-size: 1rem;
+    color: #a3a3a3;
+    margin-top: 0.5rem;
+}
+
+.intro-text {
+    color: #b3b3b3;
+    font-size: 1.1rem;
+    text-align: left;
+    max-width: 400px;
+    line-height: 1.5;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    color: #0d0d0d;
+    background-color: #444;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.cta-button:hover {
+    background-color: #777;
+}
+
+/* ============== Mission Section ============== */
+.mission {
+    padding: 2rem;
+    background-color: #111111;
+    border-left: 4px solid #d6c285;
+    margin-top: 2rem;
+}
+
+.mission h2 {
+    color: #d6c285;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.vision-text {
+    color: #a3a3a3;
+    font-size: 1rem;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.mission-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mission-card {
+    padding: 1rem;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    width: 90%;
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.mission-card:hover {
+    transform: translateY(-5px);
+}
+
+.mission-card h3 {
+    color: #d6c285;
+    font-size: 1.2rem;
+}
+
+/* ============== Inspiration Section (Pseudo-Footer) ============== */
+.inspiration {
+    padding: 1.5rem;
+    background-color: #111111;
+    border-top: 1px solid #333333;
+    color: #a3a3a3;
+    font-size: 0.85rem;
+    text-align: left;
+    margin-top: 2rem;
+}
+
+.inspiration h2 {
+    font-size: 1.3rem;
+    color: #d6c285;
+    margin-bottom: 0.5rem;
+}
+
+.thinkers-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.thinkers-list li {
+    padding: 0.25rem;
+    color: #d6e7f8;
+    font-size: 0.9rem;
+}
+
+/* ============== Footer Styling ============== */
+footer {
+    padding: 1rem;
+    background-color: #0d0d0d;
+    color: #d6e7f8;
+    text-align: center;
+    font-size: 0.8rem;
+}
+</style>

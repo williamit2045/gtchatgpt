@@ -1,0 +1,157 @@
+/* Base Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #f7f8fa;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Container Styling */
+.dashboard-container, .account-container {
+    padding: 2rem 1rem;
+    max-width: 80%;
+    margin: 0 auto;
+    transition: max-width 0.3s;
+}
+
+/* Title and Header Styles */
+.dashboard-intro h1, .account-intro h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #336699;
+    margin-bottom: 1.5rem;
+}
+
+/* Sort Options Styling */
+.sort-options {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.sort-select {
+    padding: 0.4rem;
+    background-color: #e6e6e6;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Cohort List Styling */
+.results, .cohorts {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0;
+}
+
+.cohort {
+    padding: 0.75rem 1rem;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    flex-basis: calc(45% - 1rem);
+    min-width: 220px;
+    transition: background-color 0.3s;
+}
+
+.cohort:hover {
+    background-color: #f0f4f8;
+}
+
+.cohortLink {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #336699;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.cohortLink:hover {
+    color: #224466;
+}
+
+/* Cohort Information Display */
+.cohort-info {
+    font-size: 0.9rem;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cohort-info span {
+    font-size: 0.85rem;
+}
+
+/* Join/Leave Button Styling */
+.join-btn, .leave-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #336699;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.join-btn:hover, .leave-btn:hover {
+    background-color: #224466;
+}
+
+/* Pagination Styling */
+.pageButtonDiv {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.pageButton {
+    padding: 0.5rem 1rem;
+    border: 1px solid #336699;
+    color: #336699;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.pageButton:hover {
+    background-color: #336699;
+    color: #ffffff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .dashboard-container, .account-container {
+        padding: 1rem;
+        max-width: 95%;
+    }
+
+    .sort-options {
+        justify-content: center;
+    }
+
+    .cohort {
+        flex-basis: calc(100% - 1rem);
+        justify-content: space-between;
+        padding: 0.5rem;
+    }
+}

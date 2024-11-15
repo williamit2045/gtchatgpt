@@ -1,0 +1,110 @@
+<!-- views/mbti/test.ejs-->
+<%- include('../partials/header', { title: 'MBTI Assessment' }) %>
+<%- include('../partials/nav') %>
+
+<main class="mbti-test">
+    <div class="progress-bar">
+        <div class="progress" style="width: <%= progress %>%"></div>
+        <span>Question <%= currentQuestion %> of <%= totalQuestions %></span>
+    </div>
+
+    <form action="/mbti/answer" method="POST" class="question-form">
+        <input type="hidden" name="questionNum" value="Q<%= currentQuestion %>">
+        
+        <div class="question">
+            <h2>Question <%= currentQuestion %></h2>
+            
+            <% if (question) { %>
+                <% question.forEach((answer, index) => { %>
+                    <div class="answer-option">
+                        <input type="radio" 
+                               id="answer<%= index %>"
+                               name="answer" 
+                               value="<%= answer.cohort %>" 
+                               required>
+                        <label for="answer<%= index %>">
+                            <%= answer.cohort %>
+                        </label>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>Error: Question not found</p>
+                <pre><%= JSON.stringify({ currentQuestion, totalQuestions }, null, 2) %></pre>
+            <% } %>
+        </div>
+
+        <div class="button-group">
+            <button type="submit">
+                <%= currentQuestion === totalQuestions ? 'Finish' : 'Next' %>
+            </button>
+        </div>
+    </form>
+</main>
+
+<style>
+.mbti-test {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.progress-bar {
+    background: #eee;
+    height: 20px;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.progress {
+    background: #2563eb;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.progress-bar span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.875rem;
+    color: #333;
+}
+
+.question {
+    margin-bottom: 2rem;
+}
+
+.answer-option {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.answer-option:hover {
+    background: #f8fafc;
+}
+
+.answer-option input[type="radio"] {
+    margin-right: 1rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+</style>
+
+<%- include('../partials/footer') %>

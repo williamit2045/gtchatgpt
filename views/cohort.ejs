@@ -1,0 +1,49 @@
+<%- include('./partials/header', { title: cohort.cohort }) %> 
+<%- include('./partials/nav') %>
+
+    <!-- Cohort Details Section -->
+    <section class="cohort-details">
+        <h1><%= title %></h1>
+        <div class="cohort-stats">
+            <p>Users: <%= cohort.userCount %></p>
+            <p>Shared Cohorts: <%= cohort.sharedCohortCount %></p>
+            <% if (cohort.type) { %>
+                <p>Type: <%= cohort.type %></p>
+            <% } %>
+            <% if (cohort.topic && cohort.topic.length) { %>
+                <p>Topics: <%= cohort.topic.join(', ') %></p>
+            <% } %>
+            <% if (cohort.inference) { %>
+                <p>Inference: <%= cohort.inference %></p>
+            <% } %>
+            <% if (user) { %>
+                <% if (!user.cids.includes(cohort._id.toString())) { %>
+                    <a href="/cohort/join?cohortId=<%= cohort._id %>" class="join-btn">Join</a>
+                <% } else { %>
+                    <a href="/cohort/leave?cohortId=<%= cohort._id %>" class="leave-btn">Leave</a>
+                <% } %>
+            <% } %>
+        </div>
+    </section>
+
+    <!-- Related Cohorts Section -->
+    <section class="related-cohorts">
+        <h2>Related Cohorts</h2>
+        <%- include("partials/show", {
+            cohorts: typeof cohorts !== 'undefined' ? cohorts : [],
+            baseCohort: cohort,
+            cids: typeof cids !== 'undefined' ? cids : [],
+            user: user,
+            sortType: 'sharedUsers'  // Default to 'sharedUsers' or dynamically set it
+        }) %>
+    </section>
+</div>
+
+<%- include('./partials/footer') %>
+<script src="/js/show.js"></script>
+<styles>
+
+    h1 {
+        font: sans serif;
+    }
+</styles>

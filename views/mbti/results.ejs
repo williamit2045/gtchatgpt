@@ -1,0 +1,22 @@
+<!--   views/mbti/results.ejs -->
+<%- include('../partials/header', { title: 'MBTI Results' }) %>
+<%- include('../partials/nav') %>
+
+<main class="mbti-results">
+  <h1>Your Assessment Results</h1>
+ 
+  <section class="cohorts-joined">
+    <h2>Your Selected Statements</h2>
+    <div class="cohort-list">
+      <% cohorts.forEach(cohort => { %>
+        <div class="cohort-card">
+          <h3><%= cohort.cohort %></h3>
+          <p>Topics: <%= cohort.topic.join(', ') %></p>
+          <p>Other members: <%= cohort.userCount %></p>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

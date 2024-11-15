@@ -1,0 +1,86 @@
+<%- include('./partials/header', { title: 'Login' }) %>
+<%- include('./partials/nav') %>
+
+<main>
+    <h1 class="centered-text title">Login to Your Account</h1>
+    
+    <form class="login-form" action="/auth/login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+</main>
+
+<%- include('./partials/footer') %>
+
+<style>
+    /* Center the form and style the container */
+    .login-form {
+        max-width: 450px;
+        margin: 50px auto;
+        padding: 2rem;
+        background-color: #1f2329;
+        border-radius: 8px;
+        border: 1px solid #4a9eff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        color: #e6e6e6;
+    }
+
+    /* Title styling */
+    .centered-text.title {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 2rem;
+        color: #e6b477;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Label and input styling */
+    .login-form label {
+        display: block;
+        margin-top: 1rem;
+        font-weight: bold;
+        color: #c0c8d2;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 0.25rem;
+        background-color: #2a3344;
+        border: 1px solid #4a9eff;
+        color: #e6e6e6;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+
+    .login-form input:focus {
+        border-color: #8fbcff;
+        outline: none;
+    }
+
+    /* Submit button styling */
+    .login-form button[type="submit"] {
+        width: 100%;
+        padding: 0.75rem;
+        margin-top: 1.5rem;
+        background-color: #4a9eff;
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .login-form button[type="submit"]:hover {
+        background-color: #3a7ecf;
+    }
+</style>

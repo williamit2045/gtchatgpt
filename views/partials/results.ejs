@@ -1,0 +1,12 @@
+<div class="dashboard white-border" id="dashboardDiv">
+    <%for (let cohort of cohorts) {%>
+        <div class="dashboardCohort ">
+            <a href="/cohort/show?id=<%=cohort._id%>&cohort=<%=cohort.cohort%>&popularity=<%=cohort.userCount%><% for (let cid of cohort.sharedCids) {%><%='&sharedcohortsids'+cid %><%} %>">
+                <%= cohort.cohort %>
+            </a>
+            <p>Popularity: <%=cohort.userCount%>
+            </p>
+        </div>
+        <div class=""></div>
+        <%}%>
+</div>

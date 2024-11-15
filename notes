@@ -1,0 +1,18 @@
+root
+│
+├── views/
+│   ├── FRONT.ejs
+│   ├── ACCOUNT.ejs
+│   ├── DASHBOARD.ejs
+│   ├── COHORT.ejs
+│   ├── partials/
+│   │   ├── header.ejs
+│   │   ├── footer.ejs
+│   │   ├── register.ejs
+│   │   ├── login.ejs
+│   │   ├── nav.ejs
+│   │   └── make.ejs
+│
+└── public/
+    ├── css/      # for styling all pages and modals
+    └── js/       # for interactive scripts like form handling, modal control, and page navigation

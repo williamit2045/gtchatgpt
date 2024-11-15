@@ -1,0 +1,24 @@
+<%- include("./partials/header.ejs",{title:title}) %>
+
+
+    <label for="loginForm" class="hidden">Login</label>
+    <form class="form centered-form white-border " name="loginForm" action="/user/login" method="post">
+        <h1 class="centered-text title">Login</h1>
+        
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="username" name="username" id="username">
+
+
+
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <%- include("./partials/footer.ejs") %>

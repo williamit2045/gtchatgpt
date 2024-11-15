@@ -1,0 +1,167 @@
+<!-- Navigation (nav.ejs) -->
+<nav class="nav-bar">
+    <form action="/search" method="GET" class="nav-search">
+        <input type="text" placeholder="Search cohorts..." name="query" class="search-input" oninput="performQuickSearch(this.value)">
+        <div class="search-results-dropdown"></div>
+    </form>
+    <ul class="nav-links">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <% if (!user) { %>
+            <li><a href="/auth/login">Login</a></li>
+            <li><a href="/auth/register">Register</a></li>
+        <% } else { %>
+            <li><a href="/cohort/make">Make Cohort</a></li>
+            <li><a href="/account">Account</a></li>
+            <li class="logout"><a href="/auth/logout">Logout</a></li>
+        <% } %>
+    </ul>
+    <a href="/" class="nav-logo">Globethoughts</a>
+</nav>
+
+<script>
+  // Event listener for search input
+  document.querySelector('.nav-search input[type="text"]').addEventListener('input', (e) => {
+      const query = e.target.value;
+      performQuickSearch(query);
+  });
+
+  // Function to perform quick search and display results
+  async function performQuickSearch(query) {
+      const resultsDropdown = document.querySelector('.search-results-dropdown');
+
+      if (!query) {
+          resultsDropdown.innerHTML = "";  // Clear results if no query
+          resultsDropdown.style.display = "none";
+          return;
+      }
+
+      try {
+          const response = await fetch(`/search/quick-search?query=${encodeURIComponent(query)}`);
+          const cohorts = await response.json();
+
+          resultsDropdown.innerHTML = cohorts.map(cohort => `
+              <div class="dropdown-item" onclick="window.location.href='/cohort/details?id=${cohort._id}&title=${encodeURIComponent(cohort.cohort)}'">
+                  <div class="dropdown-title">${cohort.cohort}</div>
+                  <div class="dropdown-info">Users: ${cohort.userCount} | Shared: ${cohort.sharedCohortCount}</div>
+              </div>
+          `).join("");
+
+          resultsDropdown.style.display = "block";
+      } catch (error) {
+          console.error("Quick search error:", error);
+          resultsDropdown.innerHTML = "<div class='error'>Error loading results</div>";
+          resultsDropdown.style.display = "block";
+      }
+  }
+
+  // Close dropdown when clicking outside search input or dropdown
+  document.addEventListener('click', (e) => {
+      const dropdown = document.querySelector('.search-results-dropdown');
+      const searchInput = document.querySelector('.nav-search input[type="text"]');
+
+      if (dropdown && !dropdown.contains(e.target) && !searchInput.contains(e.target)) {
+          dropdown.style.display = "none";
+      }
+  });
+</script>
+
+<style>
+/* Navigation Styling */
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000;
+    padding: 0.75rem 1rem;
+}
+
+.nav-search {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 98%; /* Smaller width for subtle padding inside form */
+    padding: 0.75rem;
+    background-color: #000;
+    border: 1px solid #111;
+    color: #2b2b2b;
+    font-size: 1rem;
+    border-radius: 2px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+/* Dropdown Styling */
+.search-results-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    max-width: 70vw; /* Set width constraint */
+    background-color: #000;
+    color: #6f6b65;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+    z-index: 10;
+    display: none;
+    border-radius: 4px;
+}
+
+.search-results-dropdown .dropdown-item {
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-results-dropdown .dropdown-item:hover {
+    background-color: #333;
+}
+
+.dropdown-title {
+    color: #bddeff;
+}
+
+.dropdown-info {
+    font-size: 0.85rem;
+    color: #6f6b65;
+}
+
+/* Nav Links Styling */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem; /* Adjust gap for spacing */
+    list-style: none;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0 2rem;
+}
+
+.nav-links a:hover {
+    background-color: #43498e;
+}
+
+/* Nav Logo Styling */
+.nav-logo {
+    font-family: var(--terminal-font);
+    font-size: 1.4rem;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 3rem; /* Adjust spacing for logo placement */
+}
+.nav-logo:hover {
+    color: #f0d176;
+}
+</style>

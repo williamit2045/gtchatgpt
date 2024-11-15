@@ -1,0 +1,43 @@
+<!-- views/partials/searchResults.ejs -->
+<% cohorts.forEach(function(cohort) { %>
+    <div class="cohort" onclick="window.location.href='/cohort/show?id=<%= cohort._id %>&title=<%= cohort.cohort %>'">
+        <div class="cohort-name"><%= cohort.cohort %></div>
+        <div class="cohort-info">
+            Users: <%= cohort.userCount %> | Shared: <%= cohort.sharedCohortCount %>
+        </div>
+    </div>
+<% }); %>
+
+<style>
+.search-results-dropdown {
+        position: fixed;
+        top: calc(100% + 10px); /* Positions below the nav bar */
+        left: 5vw; /* Aligns the dropdown with some padding from the left */
+        width: 90vw; /* Makes it 90% of the viewport width */
+        max-width: 90vw; /* Ensures it doesn’t go beyond the viewport */
+        background-color: #0d0d0d;
+        max-height: 500px;
+        overflow-y: auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        padding: 0.5rem;
+        z-index: 10;
+        display: none; /* Hidden by default */
+        border-radius: 4px;
+    }
+    .search-results-dropdown .dropdown-item {
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    .search-results-dropdown .dropdown-item:hover {
+        background-color: #333;
+    }
+    .dropdown-title {
+        font-weight: bold;
+        color: #80bfff;
+    }
+    .dropdown-info {
+        font-size: 0.85rem;
+        color: #b3b3b3;
+    }
+</style>

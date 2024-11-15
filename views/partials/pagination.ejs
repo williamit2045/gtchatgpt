@@ -1,0 +1,8 @@
+<!-- views/partials/pagination.ejs -->
+<div class="pageButtonDiv">
+    <% if (page > 1) { %>
+        <span class="pageButton" onclick="previousPage()">Previous</span>
+    <% } %>
+    <span class="pageButton" id="pageNumber"><%= page %></span>
+    <span class="pageButton" onclick="nextPage()">Next</span>
+</div>

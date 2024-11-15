@@ -1,0 +1,84 @@
+<%- include('./partials/header', { title: 'Dashboard' }) %>
+<%- include('./partials/nav') %>
+
+<div class="dashboard-container">
+    <div class="dashboard-intro">
+        <h2>What is the world thinking?</h2>
+    </div>
+    <div class="dashboard-content">
+        <%- include('./partials/show', { 
+            cohorts: typeof cohorts !== 'undefined' ? cohorts : [],
+            baseCohort: typeof baseCohort !== 'undefined' ? baseCohort : {},
+            cids: typeof cids !== 'undefined' ? cids : [],
+            user: typeof user !== 'undefined' ? user : null,
+            sortType: sortType
+        }) %>
+    </div>
+    <%- include('./partials/pagination', { page: typeof page !== 'undefined' ? page : 1 }) %>
+</div>
+
+<%- include('./partials/footer') %>
+
+<script src="/js/show.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const maxVisibleCohorts = 12;
+        const cohorts = document.querySelectorAll('.cohort');
+        cohorts.forEach((cohort, index) => {
+            if (index >= maxVisibleCohorts) {
+                cohort.style.display = 'none';
+            }
+        });
+    });
+</script>
+<style>
+   /* dashboard.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body, .dashboard-container {
+    background-color: #0d0d0d;
+    color: #fff;
+    font-family: var(--terminal-font);
+    line-height: 1.6;
+}
+
+.dashboard-container {
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-intro {
+    position: absolute; /* Or 'fixed' if you want it to stay on scroll */
+    top: 80px; /* Adjust this to be below the nav */
+    right: 20px; /* Adjust this as needed */
+    margin: 0;
+    text-align: right; /* Optional, if you want the text aligned to the right */
+}
+
+.dashboard-intro h1 {
+    font-size: 1.8rem;
+    color: #b3b3b3; /* Light gray for better contrast */
+    text-align: right;
+    font-weight: 400;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .dashboard-container {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-container {
+        max-width: 100%;
+    }
+}
+
+
+</style>

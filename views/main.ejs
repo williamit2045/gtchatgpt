@@ -1,0 +1,114 @@
+%- include('./partials/header', { title: 'Home' }) %>
+<%- include('./partials/nav') %>
+
+<main class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-left">
+                <h1>Globethoughts</h1>
+                <p class="subtitle">Where collective intelligence meets human understanding</p>
+            </div>
+            <div class="hero-right">
+                <h2>Understand Yourself, Connect with Others</h2>
+                <div class="trust-badges">
+                    <span class="trust-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        Data Privacy
+                    </span>
+                    <span class="trust-badge">
+                        <i class="fas fa-check-circle"></i>
+                        Research-Based
+                    </span>
+                    <span class="trust-badge">
+                        <i class="fas fa-users"></i>
+                        Global Community
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Options -->
+    <section class="assessments">
+        <div class="container">
+            <div class="assessment-cards">
+                <div class="assessment-card">
+                    <div class="card-header">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Demographics Profile</h3>
+                    </div>
+                    <p>Help us understand your background</p>
+                    <span class="time-estimate">5 minutes</span>
+                    <a href="#demographics" class="btn btn-primary">Begin Here</a>
+                </div>
+                
+                <div class="assessment-card">
+                    <div class="card-header">
+                        <i class="fas fa-brain"></i>
+                        <h3>MBTI Assessment</h3>
+                    </div>
+                    <p>Discover your personality type</p>
+                    <span class="time-estimate">15 minutes</span>
+                    <a href="/quiz/mbti" class="btn btn-primary">Take Test</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Cards -->
+    <section class="mission">
+        <div class="container">
+            <h2>Our Vision</h2>
+            <div class="mission-cards">
+                <div class="mission-card">
+                    <h3>Understanding</h3>
+                    <p>True social progress starts with authentic comprehension of diverse human experiences.</p>
+                </div>
+                <div class="mission-card">
+                    <h3>Evolution</h3>
+                    <p>As we face global challenges, our collective intelligence becomes our greatest asset.</p>
+                </div>
+                <div class="mission-card">
+                    <h3>Community</h3>
+                    <p>Discover how shared perspectives create deeper understanding across diverse groups.</p>
+                </div>
+                <div class="mission-card">
+                    <h3>Integration</h3>
+                    <p>Connecting people through shared experiences and viewpoints.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demographics Form -->
+    <section id="demographics" class="demographics">
+        <div class="container">
+            <div class="form-header">
+                <h2>Tell Us About Yourself</h2>
+                <p class="privacy-note">
+                    <i class="fas fa-lock"></i>
+                    Your information is secure and private
+                </p>
+            </div>
+            
+            <form class="demographics-form" action="/quiz/demographics" method="POST">
+                <!-- Form fields here - same as before but styled -->
+            </form>
+        </div>
+    </section>
+
+    <!-- Intellectual Foundation -->
+    <section class="foundation">
+        <div class="container">
+            <h2>Intellectual Foundation</h2>
+            <p class="section-intro">Drawing inspiration from visionary thinkers who explore human potential and collective intelligence:</p>
+            <div class="thinkers-grid">
+                <!-- Original thinkers list styled as cards -->
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include('./partials/footer') %>
+

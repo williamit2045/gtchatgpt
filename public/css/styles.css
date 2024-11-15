@@ -1,0 +1,59 @@
+/* ============== Global Styles ============== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'IBM Plex Mono', monospace;
+    color: #e6e6e6;
+    background-color: #0d0d0d;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+a {
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #80bfff;
+}
+
+/* ============== Buttons ============== */
+.btn-primary {
+    background-color: #00509e;
+    color: #e6e6e6;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #80bfff;
+    color: #0d0d0d;
+}
+
+/* ============== Cards ============== */
+.card {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 20px;
+    color: #d6e7f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}

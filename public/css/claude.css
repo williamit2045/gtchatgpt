@@ -1,0 +1,189 @@
+/* Base Styles */
+:root {
+     --terminal-bg: #1a1a1a;
+     --terminal-text: #d4d4d4;
+     --terminal-accent: #64ffda;
+     --terminal-secondary: #8b8b8b;
+     --terminal-border: #333333;
+     --terminal-hover: #2a2a2a;
+     --terminal-font: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+    }
+    
+    body {
+     background-color: var(--terminal-bg);
+     color: var(--terminal-text);
+     font-family: var(--terminal-font);
+     line-height: 1.6;
+     margin: 0;
+     padding: 0;
+    }
+    
+    /* Navigation Styles */
+    .nav-bar {
+     background-color: #000000;
+     border-bottom: 1px solid var(--terminal-border);
+     padding: 0.75rem 1rem;
+    }
+    
+    .nav-search .search-input {
+     background-color: #000000;
+     border: 1px solid var(--terminal-border);
+     color: var(--terminal-text);
+     padding: 0.5rem;
+     font-family: var(--terminal-font);
+     font-size: 0.9rem;
+    }
+    
+    .nav-links a {
+     color: var(--terminal-accent);
+     font-size: 0.9rem;
+     text-decoration: none;
+     padding: 0.5rem 1rem;
+    }
+    
+    .nav-links a:hover {
+     background-color: var(--terminal-hover);
+    }
+    
+    .nav-logo {
+     color: var(--terminal-accent);
+     font-size: 1.2rem;
+    }
+    
+    /* Results/Cohorts List */
+    .results {
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 1rem;
+    }
+    
+    .sort-options {
+     margin-bottom: 1.5rem;
+    }
+    
+    .sort-select {
+     background-color: #000000;
+     color: var(--terminal-text);
+     border: 1px solid var(--terminal-border);
+     padding: 0.5rem;
+     font-family: var(--terminal-font);
+     font-size: 0.9rem;
+    }
+    
+    .cohorts {
+     list-style: none;
+     padding: 0;
+    }
+    
+    .cohort {
+     border: 1px solid var(--terminal-border);
+     margin-bottom: 0.5rem;
+     padding: 0.75rem;
+     font-size: 0.9rem;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+    }
+    
+    .cohort:hover {
+     background-color: var(--terminal-hover);
+    }
+    
+    .cohortLink {
+     color: var(--terminal-accent);
+     text-decoration: none;
+    }
+    
+    .cohort-info {
+     color: var(--terminal-secondary);
+     font-size: 0.8rem;
+    }
+    
+    /* Buttons */
+    .join-btn, .leave-btn {
+     padding: 0.4rem 1rem;
+     border: 1px solid var(--terminal-border);
+     font-family: var(--terminal-font);
+     font-size: 0.8rem;
+     cursor: pointer;
+    }
+    
+    .join-btn {
+     background-color: #1a3a1a;
+     color: #90ee90;
+    }
+    
+    .leave-btn {
+     background-color: #3a1a1a;
+     color: #ee9090;
+    }
+    
+    /* Landing Page */
+    .landing-page {
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 2rem;
+    }
+    
+    .hero {
+     border-left: 2px solid var(--terminal-accent);
+     padding: 2rem;
+    }
+    
+    .intro-title {
+     color: var(--terminal-accent);
+     font-size: 2rem;
+     margin-bottom: 1rem;
+    }
+    
+    .tagline {
+     color: var(--terminal-secondary);
+     font-size: 1.1rem;
+    }
+    
+    .mission-cards {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+     gap: 1rem;
+     margin-top: 2rem;
+    }
+    
+    .mission-card {
+     border: 1px solid var(--terminal-border);
+     padding: 1rem;
+     background-color: #000000;
+    }
+    
+    /* Search Dropdown */
+    .search-results-dropdown {
+     background-color: #000000;
+     border: 1px solid var(--terminal-border);
+     max-height: 400px;
+     overflow-y: auto;
+    }
+    
+    .dropdown-item {
+     padding: 0.75rem;
+     border-bottom: 1px solid var(--terminal-border);
+    }
+    
+    .dropdown-item:hover {
+     background-color: var(--terminal-hover);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+     .landing-page {
+      padding: 1rem;
+     }
+    
+     .hero {
+      padding: 1rem;
+     }
+    
+     .nav-bar {
+      flex-direction: column;
+      gap: 1rem;
+     }
+    }
+    

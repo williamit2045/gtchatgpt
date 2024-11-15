@@ -1,0 +1,150 @@
+<section class="results">
+    <div class="sort-options">
+        <label for="sortType-<%= typeof section !== 'undefined' ? section : 'default' %>">Sort By:</label>
+        <select 
+            id="sortType-<%= typeof section !== 'undefined' ? section : 'default' %>"
+            class="sort-select"
+            data-base-cohort-id="<%= baseCohort ? baseCohort._id : baseCohorts && baseCohorts.length ? baseCohorts.map(c => c._id).join(',') : '' %>"
+            data-section="<%= typeof section !== 'undefined' ? section : '' %>"
+            onchange="updateShow(this.value, 1, this.getAttribute('data-base-cohort-id'), this.getAttribute('data-section'))">
+            <option value="sharedUsers" <%= sortType === 'sharedUsers' ? 'selected' : '' %>>Shared Users</option>
+            <option value="sharedCohorts" <%= sortType === 'sharedCohorts' ? 'selected' : '' %>>Shared Cohorts</option>
+            <option value="userCount" <%= sortType === 'userCount' ? 'selected' : '' %>>User Count</option>
+            <option value="alpha" <%= sortType === 'alpha' ? 'selected' : '' %>>Alphabetical</option>
+        </select>
+    </div>
+    <ul class="cohorts">
+        <% if (cohorts && cohorts.length > 0) { %>
+            <% cohorts.forEach(cohort => { %>
+                <li class="cohort">
+                    <a href="/cohort/details?id=<%= cohort._id %>&title=<%= encodeURIComponent(cohort.cohort) %>" class="cohortLink">
+                        <%= cohort.cohort %>
+                    </a>
+                    <div class="cohort-info">
+                        <span>Users: <%= cohort.userCount %></span>
+                        <span>Cohorts: <%= cohort.sharedCohortCount %></span>
+                        <% if (user && Array.isArray(cids)) { %>
+                            <% if (cids.includes(cohort._id.toString())) { %>
+                                <a href="/cohort/leave?cohortId=<%= cohort._id %>" class="leave-btn">Leave</a>
+                            <% } else { %>
+                                <a href="/cohort/join?cohortId=<%= cohort._id %>" class="join-btn">Join</a>
+                            <% } %>
+                        <% } %>
+                    </div>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <p>No cohorts available to display.</p>
+        <% } %>
+    </ul>
+</section>
+<style>
+ 
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=Commissioner:wght@100..900&family=Cousine:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Metrophobic&display=swap');
+
+.results {
+    background-color: #0d0d0d;
+    color: #6f6b65;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.sort-options {
+    text-align: left;
+    padding: 1rem;
+}
+
+.sort-select {
+    background-color: #111;
+    color: #f8e5d6;
+    border: 1px solid #444;
+    padding: 0.5rem;
+}
+
+.cohorts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cohort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #22222280;
+    transition: background-color 0.2s;
+    color: #aeaeae; /* Cohorts font color matches "What is the world thinking?" text */
+    font-family: var(--terminal-font);
+}
+
+.cohort:hover {
+    background-color: #373737;
+}
+
+.cohortLink {
+    font-size: 1.1rem;
+    color: #6f6b65;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cohort-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #b6ac9d;
+}
+
+.cohort-info span {
+    color: #999;
+}
+
+.join-btn,
+.leave-btn {
+    padding: 0.5rem 1.5rem; /* Wider button */
+    border: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.join-btn {
+    background-color: #006400; /* Dark green */
+    color: #ffffff;
+}
+
+.join-btn:hover {
+    background-color: #228B22; /* Lighter green on hover */
+}
+
+.leave-btn {
+    background-color: #f09090;
+    color: #0d0d0d;
+}
+
+.leave-btn:hover {
+    opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .results {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .results {
+        width: 100%;
+    }
+
+    .cohort-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+</style>
