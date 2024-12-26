@@ -31,7 +31,7 @@ router.get("/register", (req, res) => {
 router.post("/register", async (req, res) => {
     try {
         const { email, username, password } = req.body;
-        if (!email || !username || !password) {
+        if (!username || !password) {
             return res.status(400).send("Please fill in all required fields.");
         }
 

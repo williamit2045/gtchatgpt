@@ -17,7 +17,6 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
   },
   madeCids: {
     type: [Schema.Types.ObjectId],
